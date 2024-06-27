@@ -67,6 +67,6 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para má
 ## Contacto
 
 Para más información, puedes contactarnos a  [hello@diversa.studio]
-### How to run it on your own machine
+
 
 
