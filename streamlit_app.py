@@ -3,38 +3,70 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-"""
-# Welcome to Streamlit!
+# Definir los colores
+colors = {
+    "sidebar_bg": "#8C9584",
+    "content_bg": "#CAD8D1",
+    "color1": "#D0DED4",
+    "color2": "#E5E1C1",
+    "color3": "#CAC3A9",
+    "color4": "#D0E6EF",
+    "color5": "#B0E2E7",
+    "color6": "#70D3DC",
+    "color7": "#8CA8AE",
+    "color8": "#688D98",
+    "color9": "#327378",
+    "color10": "#4373B3",
+    "color11": "#152F54"
+}
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:.
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+# Aplicar colores personalizados a la interfaz
+st.markdown(
+    f"""
+    <style>
+    .stApp {{
+        background-color: {colors["content_bg"]};
+    }}
+    .css-1d391kg {{
+        background-color: {colors["sidebar_bg"]};
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
+# Sidebar con título, descripción y filtros
+st.sidebar.title("Gobernanza del Agua en Sonora")
+st.sidebar.markdown("""
+    Este dashboard muestra datos sobre la cuenca del río Yaqui, además de datos sociodemográficos de la comunidad Yaqui de Vicam en Sonora, México.
+""")
+st.sidebar.text_input("Filtro 1", key="filtro1")
+st.sidebar.text_input("Filtro 2", key="filtro2")
 
-num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
-num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
+# Contenido principal
+st.markdown('<div class="content">', unsafe_allow_html=True)
 
-indices = np.linspace(0, 1, num_points)
-theta = 2 * np.pi * num_turns * indices
-radius = indices
-
-x = radius * np.cos(theta)
-y = radius * np.sin(theta)
-
-df = pd.DataFrame({
-    "x": x,
-    "y": y,
-    "idx": indices,
-    "rand": np.random.randn(num_points),
+# Datos de ejemplo
+data = pd.DataFrame({
+    'category': ['A', 'B', 'C', 'D', 'E'],
+    'values': [5, 10, 15, 20, 25]
 })
 
-st.altair_chart(alt.Chart(df, height=700, width=700)
-    .mark_point(filled=True)
-    .encode(
-        x=alt.X("x", axis=None),
-        y=alt.Y("y", axis=None),
-        color=alt.Color("idx", legend=None, scale=alt.Scale()),
-        size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
-    ))
+# Crear gráfico de barras con colores personalizados
+chart = alt.Chart(data).mark_bar().encode(
+    x='category',
+    y='values',
+    color=alt.condition(
+        alt.datum.category == 'A',  # Cambiar esta condición según lo necesario
+        alt.value(colors["color1"]),  # Color para la condición
+        alt.value(colors["color2"])   # Color por defecto
+    )
+).properties(
+    width=600,
+    height=400
+)
+
+# Mostrar el gráfico en Streamlit
+st.altair_chart(chart, use_container_width=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
