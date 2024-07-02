@@ -5,8 +5,10 @@ import streamlit as st
 
 # Definir los colores
 colors = {
-    "sidebar_bg": "#8C9584",
-    "content_bg": "#CAD8D1",
+    "sidebar_bg": "#152F54",  # Color para la barra lateral
+    "content_bg": "#FFFFFF",
+    "text_color": "#000000",  # Color negro para el texto
+    "sidebar_text_color": "#FFFFFF",  # Color blanco para el texto de la barra lateral
     "color1": "#D0DED4",
     "color2": "#E5E1C1",
     "color3": "#CAC3A9",
@@ -26,47 +28,127 @@ st.markdown(
     <style>
     .stApp {{
         background-color: {colors["content_bg"]};
+        color: {colors["text_color"]};
     }}
     .css-1d391kg {{
         background-color: {colors["sidebar_bg"]};
+        color: {colors["sidebar_text_color"]};
+    }}
+    .css-1lcbmhc.e1fqkh3o3 {{
+        background-color: {colors["sidebar_bg"]};
+        color: {colors["sidebar_text_color"]};
+    }}
+    .css-1e5imcs {{
+        background-color: {colors["sidebar_bg"]};
+        color: {colors["sidebar_text_color"]};
+    }}
+    .css-qrbaxs {{
+        background-color: {colors["sidebar_bg"]};
+        color: {colors["sidebar_text_color"]};
+    }}
+    /* Ocultar la barra superior */
+    #MainMenu {{
+        visibility: hidden;
+    }}
+    footer {{
+        visibility: hidden;
+    }}
+    header {{
+        visibility: hidden;
     }}
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Sidebar con título, descripción y filtros
-st.sidebar.title("Gobernanza del Agua en Sonora")
-st.sidebar.markdown("""
+# Sidebar con menú de navegación
+st.sidebar.title("Gobernanza del agua en el pueblo Yaqui de Vícam-Sonora México")
+st.sidebar.markdown(
+    """
+    <div style="color: #FFFFFF;">
     Este dashboard muestra datos sobre la cuenca del río Yaqui, además de datos sociodemográficos de la comunidad Yaqui de Vicam en Sonora, México.
-""")
-st.sidebar.text_input("Filtro 1", key="filtro1")
-st.sidebar.text_input("Filtro 2", key="filtro2")
-
-# Contenido principal
-st.markdown('<div class="content">', unsafe_allow_html=True)
-
-# Datos de ejemplo
-data = pd.DataFrame({
-    'category': ['A', 'B', 'C', 'D', 'E'],
-    'values': [5, 10, 15, 20, 25]
-})
-
-# Crear gráfico de barras con colores personalizados
-chart = alt.Chart(data).mark_bar().encode(
-    x='category',
-    y='values',
-    color=alt.condition(
-        alt.datum.category == 'A',  # Cambiar esta condición según lo necesario
-        alt.value(colors["color1"]),  # Color para la condición
-        alt.value(colors["color2"])   # Color por defecto
-    )
-).properties(
-    width=600,
-    height=400
+    </div>
+    """, unsafe_allow_html=True
 )
 
-# Mostrar el gráfico en Streamlit
-st.altair_chart(chart, use_container_width=True)
+navigation = st.sidebar.radio("Navigation", ["Análisis Geográfico", "Análisis Sociodemográfico", "Leyes de Agua"])
 
-st.markdown('</div>', unsafe_allow_html=True)
+# Filtros
+st.sidebar.header("Filtro")
+municipios = st.sidebar.selectbox('Municipios', ['Municipio 1', 'Municipio 2', 'Municipio 3'])
+subcuencas = st.sidebar.selectbox('Subcuencas', ['Subcuenca 1', 'Subcuenca 2', 'Subcuenca 3'])
+
+# Contenido principal basado en la selección del menú de navegación
+if navigation == "Análisis Geográfico":
+    col1, col2 = st.columns([2, 1])  # La primera columna será más ancha
+
+    with col1:
+        st.markdown("### <span style='color:#000000;'>Mapa de la región</span>", unsafe_allow_html=True)
+        st.map()
+
+    with col2:
+        st.markdown(
+            f"""
+            <div style="color: {colors['text_color']};">
+                Este dashboard muestra datos sobre la cuenca del río Yaqui, además 
+                datos sociodemográficos de la comunidad Yaqui de Vícam en Sonora México.
+            </div>
+            """, unsafe_allow_html=True
+        )
+
+elif navigation == "Análisis Sociodemográfico":
+    col1, col2 = st.columns([2, 1])  # La primera columna será más ancha
+
+    with col1:
+        st.markdown("### <span style='color:#000000;'>Análisis de Datos</span>", unsafe_allow_html=True)
+
+        # Datos de ejemplo para el gráfico de barras usando Altair
+        data = pd.DataFrame({
+            'category': ['A', 'B', 'C', 'D', 'E'],
+            'values': [5, 10, 15, 20, 25]
+        })
+
+        # Crear gráfico de barras con colores personalizados usando Altair
+        chart = alt.Chart(data).mark_bar().encode(
+            x='category',
+            y='values',
+            color=alt.condition(
+                alt.datum.category == 'A',  # Cambiar esta condición según lo necesario
+                alt.value(colors["color1"]),  # Color para la condición
+                alt.value(colors["color2"])   # Color por defecto
+            )
+        ).properties(
+            width=600,
+            height=400
+        )
+
+        # Mostrar el gráfico en Streamlit usando Altair
+        st.altair_chart(chart, use_container_width=True)
+
+    with col2:
+        st.markdown(
+            f"""
+            <div style="color: {colors['text_color']};">
+                Este dashboard muestra datos sobre la cuenca del río Yaqui, además 
+                datos sociodemográficos de la comunidad Yaqui de Vícam en Sonora México.
+            </div>
+            """, unsafe_allow_html=True
+        )
+
+elif navigation == "Leyes de Agua":
+    st.markdown("### Leyes de Agua", unsafe_allow_html=True)
+    st.markdown(
+        """
+        Aquí se presentan las leyes y regulaciones sobre el uso y la gestión del agua en la región de Sonora.
+        **Ley 1: Ley General de Aguas**
+        - Descripción de la ley y su impacto en la gestión del agua.
+
+        **Ley 2: Reglamento de Uso de Aguas Nacionales**
+        - Descripción del reglamento y cómo afecta a los usuarios del agua.
+
+        **Ley 3: Normas Oficiales Mexicanas (NOM)**
+        - Detalles sobre las normas y regulaciones específicas relacionadas con la calidad y uso del agua.
+        """
+    )
+
+# Para ejecutar la aplicación de Streamlit, guarda este script como app.py y ejecuta `streamlit run app.py` desde tu terminal.
