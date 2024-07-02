@@ -62,15 +62,10 @@ st.markdown(
 )
 
 # Sidebar con menú de navegación
-st.sidebar.title("Gobernanza del agua en el pueblo Yaqui de Vícam-Sonora México")
-st.sidebar.markdown(
-    """
-    <div style="color: #FFFFFF;">
+st.sidebar.title("Gobernanza del Agua en el Pueblo Yaqui de Vícam-Sonora México")
+st.sidebar.markdown("""
     Este dashboard muestra datos sobre la cuenca del río Yaqui, además de datos sociodemográficos de la comunidad Yaqui de Vicam en Sonora, México.
-    </div>
-    """, unsafe_allow_html=True
-)
-
+""")
 navigation = st.sidebar.radio("Navigation", ["Análisis Geográfico", "Análisis Sociodemográfico", "Leyes de Agua"])
 
 # Filtros
@@ -83,15 +78,16 @@ if navigation == "Análisis Geográfico":
     col1, col2 = st.columns([2, 1])  # La primera columna será más ancha
 
     with col1:
-        st.markdown("### <span style='color:#000000;'>Mapa de la región</span>", unsafe_allow_html=True)
-        st.map()
+        st.markdown("<h2 style='color: #000000;'>Mapa Dinamic World Sonora</h2>", unsafe_allow_html=True)
+        st.image("mapas/dw_5municipios.png", use_column_width=True)
 
     with col2:
         st.markdown(
             f"""
             <div style="color: {colors['text_color']};">
-                Este dashboard muestra datos sobre la cuenca del río Yaqui, además 
-                datos sociodemográficos de la comunidad Yaqui de Vícam en Sonora México.
+                Este mapa muestra la cobertura del suelo en cinco municipios de la región de Sonora.
+                Los colores representan diferentes tipos de cobertura del suelo, como áreas urbanas, vegetación, cuerpos de agua y áreas agrícolas.
+                Esta información es crucial para la gestión de recursos naturales y la planificación territorial en la región.
             </div>
             """, unsafe_allow_html=True
         )
@@ -100,7 +96,7 @@ elif navigation == "Análisis Sociodemográfico":
     col1, col2 = st.columns([2, 1])  # La primera columna será más ancha
 
     with col1:
-        st.markdown("### <span style='color:#000000;'>Análisis de Datos</span>", unsafe_allow_html=True)
+        st.markdown("**Análisis Sociodemográfico**")
 
         # Datos de ejemplo para el gráfico de barras usando Altair
         data = pd.DataFrame({
@@ -151,4 +147,4 @@ elif navigation == "Leyes de Agua":
         """
     )
 
-# Para ejecutar la aplicación de Streamlit, guarda este script como app.py y ejecuta `streamlit run app.py` desde tu terminal.
+# Para ejecutar la aplicación de Streamlit, guarda este script como streamlit_app.py y ejecuta `streamlit run streamlit_app.py` desde tu terminal.
