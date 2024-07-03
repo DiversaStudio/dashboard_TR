@@ -7,7 +7,7 @@ import streamlit as st
 colors = {
     "sidebar_bg": "#152F54",  # Color para la barra lateral
     "content_bg": "#FFFFFF",
-    "text_color": "#000000",  # Color negro para el texto
+    "text_color": "#000000",  # Color negro para el texto del contenido principal
     "sidebar_text_color": "#FFFFFF",  # Color blanco para el texto de la barra lateral
     "color1": "#D0DED4",
     "color2": "#E5E1C1",
@@ -46,6 +46,21 @@ st.markdown(
         background-color: {colors["sidebar_bg"]};
         color: {colors["sidebar_text_color"]};
     }}
+    .css-2trqyj {{
+        color: {colors["sidebar_text_color"]};
+    }}
+    .css-1v3fvcr {{
+        color: {colors["sidebar_text_color"]};
+    }}
+    .css-1b8mg83 {{
+        color: {colors["sidebar_text_color"]};
+    }}
+    .css-15tx938 {{
+        color: {colors["sidebar_text_color"]};
+    }}
+    .css-1kfbrr7 {{
+        color: {colors["sidebar_text_color"]};
+    }}
     /* Ocultar la barra superior */
     #MainMenu {{
         visibility: hidden;
@@ -70,24 +85,25 @@ navigation = st.sidebar.radio("Navigation", ["Análisis Geográfico", "Análisis
 
 # Filtros
 st.sidebar.header("Filtro")
-municipios = st.sidebar.selectbox('Municipios', ['Municipio 1', 'Municipio 2', 'Municipio 3'])
-subcuencas = st.sidebar.selectbox('Subcuencas', ['Subcuenca 1', 'Subcuenca 2', 'Subcuenca 3'])
+slider_1 = st.sidebar.selectbox('Municipios', ['Municipio 1', 'Municipio 2', 'Municipio 3'])
+slider_2 = st.sidebar.selectbox('Subcuencas', ['Subcuenca 1', 'Subcuenca 2', 'Subcuenca 3'])
 
 # Contenido principal basado en la selección del menú de navegación
 if navigation == "Análisis Geográfico":
     col1, col2 = st.columns([2, 1])  # La primera columna será más ancha
 
     with col1:
-        st.markdown("<h2 style='color: #000000;'>Mapa Dinamic World Sonora</h2>", unsafe_allow_html=True)
+        st.markdown("**<h2 style='color:#000000;'>Mapa Dinamic World Sonora</h2>**", unsafe_allow_html=True)
         st.image("mapas/dw_5municipios.png", use_column_width=True)
 
     with col2:
         st.markdown(
             f"""
             <div style="color: {colors['text_color']};">
-                Este mapa muestra la cobertura del suelo en cinco municipios de la región de Sonora.
-                Los colores representan diferentes tipos de cobertura del suelo, como áreas urbanas, vegetación, cuerpos de agua y áreas agrícolas.
-                Esta información es crucial para la gestión de recursos naturales y la planificación territorial en la región.
+                Este mapa muestra la cobertura del suelo en cinco municipios de la región de Sonora. Los colores
+                representan diferentes tipos de cobertura del suelo, como áreas urbanas, vegetación, cuerpos de
+                agua y áreas agrícolas. Esta información es crucial para la gestión de recursos naturales y la
+                planificación territorial en la región.
             </div>
             """, unsafe_allow_html=True
         )
@@ -147,4 +163,4 @@ elif navigation == "Leyes de Agua":
         """
     )
 
-# Para ejecutar la aplicación de Streamlit, guarda este script como streamlit_app.py y ejecuta `streamlit run streamlit_app.py` desde tu terminal.
+# Para ejecutar la aplicación de Streamlit, guarda este script como app.py y ejecuta `streamlit run streamlit_app.py` desde tu terminal.
