@@ -65,18 +65,19 @@ st.markdown(
 )
 
 # Sidebar con menú de navegación
-st.sidebar.title("Gobernanza del Agua en el Pueblo Yaqui de Vícam-Sonora México")
+st.sidebar.title("Gobernanza del Agua Yaqui Vícam México")
 st.sidebar.markdown("""
     <div style='color: #FFFFFF;'>
-    Este dashboard muestra datos sobre la cuenca del río Yaqui, además de datos sociodemográficos de la comunidad Yaqui de Vicam en Sonora, México.
+    Aquí podrás encontrar datos sobre la cuenca del río Yaqui, datos sociodemográficos de la comunidad Yaqui de Vícam en Sonora, México.
     </div>
 """, unsafe_allow_html=True)
 
 navigation = st.sidebar.radio(
-    "Home",
+    "",
     [
-        "🏠 Análisis Sociodemográfico",
+        "🗺️ Introducción, Zona de estudio",
         "🗺️ Análisis Geográfico",
+        "🗺️ Análisis Sociodemográfico",
         "💦 Leyes de Agua",
         "🗺️ Basemaps"
     ]
@@ -99,7 +100,7 @@ elif navigation == "🗺️ Basemaps":
     st.write("Has seleccionado Basemaps")
 
 # Filtros
-st.sidebar.header("Filtro")
+st.sidebar.header("Filtros")
 municipios = st.sidebar.selectbox('Municipios', ['Municipio 1', 'Municipio 2', 'Municipio 3'])
 subcuencas = st.sidebar.selectbox('Subcuencas', ['Subcuenca 1', 'Subcuenca 2', 'Subcuenca 3'])
 
@@ -118,9 +119,21 @@ st.sidebar.header("Contacto")
 st.sidebar.markdown(
     """
     <div style="color: white;">
-         tec@tecnicasrudas.org </a> 
+         tech@tecnicasrudas.org </a> 
          hello@diversa.studio </a> 
     </div>
     """, 
     unsafe_allow_html=True
 )
+
+# Logos en la misma línea
+st.sidebar.markdown("<h2 style='color:white;'> </h2>", unsafe_allow_html=True)
+col3, col4 = st.sidebar.columns(2)
+
+with col3:
+    logo1 = Image.open("logos/logo1.png")
+    st.image(logo1, width=150)
+
+with col4:
+    logo2 = Image.open("logos/logo2.png")
+    st.image(logo2, width=150)
