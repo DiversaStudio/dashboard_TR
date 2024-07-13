@@ -104,15 +104,25 @@ st.sidebar.header("Filtros")
 municipios = st.sidebar.selectbox('Municipios', ['Municipio 1', 'Municipio 2', 'Municipio 3'])
 subcuencas = st.sidebar.selectbox('Subcuencas', ['Subcuenca 1', 'Subcuenca 2', 'Subcuenca 3'])
 
-# Contenido principal
-if navigation == "🏠 Home":
-    st.header("Mapa Dinamic World Sonora")
-    st.image("mapas/dw_5municipios.png", use_column_width=True)
-    st.markdown(
-        """
-        Este mapa muestra la cobertura del suelo en cinco municipios de la región de Sonora. Los colores representan diferentes tipos de cobertura del suelo, como áreas urbanas, vegetación, cuerpos de agua y áreas agrícolas. Esta información es crucial para la gestión de recursos naturales y la planificación territorial en la región.
-        """, unsafe_allow_html=True
-    )
+
+
+# Mostrar contenido basado en la selección del menú de navegación
+if navigation == "🗺️ Introducción, Zona de estudio":
+    col1, col2 = st.columns([2, 1])  # Ajustar las proporciones según sea necesario
+
+    with col1:
+        st.markdown("<h1 style='color: #000000;'>Cuenca Río Yaqui</h1>", unsafe_allow_html=True)  # Título en letras negras
+        st.image("mapas/cuenca_rio_yaqui.png", use_column_width=True)
+
+    with col2:
+        st.markdown(
+            """
+            <div style="color: #000000;">
+            El mapa muestra la cuenca del Río Yaqui en el noroeste de México, destacando tres subcuencas: A. Sahuaral (azul oscuro), Álvaro Obregón (azul medio) y Vicam (azul claro). El río principal, el Yaqui, está marcado en rojo y fluye desde el noreste hacia el suroeste, desembocando en el Golfo de California. La red hidrográfica, representada por líneas blancas, ilustra los ríos y arroyos que alimentan al Yaqui. También se observa una cuadrícula en la parte inferior que podría indicar áreas urbanas o agrícolas, proporcionando una visión detallada de la distribución y flujo de agua en la región.
+            </div>
+            """, unsafe_allow_html=True
+        )
+
 
 # Sección Contact
 st.sidebar.header("Contacto")
