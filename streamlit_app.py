@@ -83,20 +83,14 @@ navigation = st.sidebar.radio(
 )
 
 # Mostrar contenido basado en la selección del menú de navegación
-if navigation == "🏠 Home":
+if navigation == "📘 Introducción, Zona de estudio"
     st.write("Has seleccionado Home")
-elif navigation == "📷 Timelapse":
+elif navigation ==  "🗺️ Análisis Geográfico":
     st.write("Has seleccionado Timelapse")
-elif navigation == "🏡 U.S. Housing":
+elif navigation =="📊 Análisis Sociodemográfico":
     st.write("Has seleccionado U.S. Housing")
-elif navigation == "🗺️ Split Map":
+elif navigation == "💦 Leyes de Agua":
     st.write("Has seleccionado Split Map")
-elif navigation == "🔥 Heatmap":
-    st.write("Has seleccionado Heatmap")
-elif navigation == "📍 Marker Cluster":
-    st.write("Has seleccionado Marker Cluster")
-elif navigation == "🗺️ Basemaps":
-    st.write("Has seleccionado Basemaps")
 
 # Filtros
 st.sidebar.header("Filtros")
