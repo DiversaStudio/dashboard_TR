@@ -65,7 +65,7 @@ st.markdown(
 )
 
 # Logo en la barra lateral
-st.sidebar.image("logos/logo1.png", use_column_width=True)
+st.sidebar.image("logos/rio.png", width=175)
 
 # Título y descripción en la barra lateral
 st.sidebar.title("Gobernanza del Agua Yaqui Vícam México")
@@ -134,3 +134,7 @@ with col3:
 with col4:
     logo2 = Image.open("logos/logo2.png")
     st.image(logo2, width=100)
+
+with col5:
+    logo3 = Image.open("logos/logo3.png")
+    st.image(logo3, width=100)
