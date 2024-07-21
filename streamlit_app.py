@@ -84,31 +84,32 @@ st.sidebar.image("logos/rio.png", width=175)
 st.sidebar.title("Gobernanza del Agua Yaqui Vícam México")
 st.sidebar.markdown("""
     <div style='color: #FFFFFF;'>
-    Aquí podrás encontrar datos sobre la cuenca del río Yaqui, datos sociodemográficos de la comunidad Yaqui de Vícam en Sonora, México.
+    Descubre información esencial sobre la cuenca del río Yaqui y la comunidad Yaqui de Vícam, Sonora. Aquí encontrarás datos sociodemográficos actualizados, análisis de la gestión hídrica local y detalles sobre los desafíos y oportunidades en el manejo del agua en esta región.
     </div>
 """, unsafe_allow_html=True)
 
-# Convertir el menú de navegación a botones
+
+
+# Inicializar la variable de estado para la navegación
+if "navigation" not in st.session_state:
+    st.session_state.navigation = "📘 Introducción, Zona de estudio"
+
+# Crear los botones de navegación
 st.sidebar.markdown("---")
 if st.sidebar.button("📘 Introducción, Zona de estudio"):
-    navigation = "📘 Introducción, Zona de estudio"
-elif st.sidebar.button("🗺️ Análisis Geográfico"):
-    navigation = "🗺️ Análisis Geográfico"
-elif st.sidebar.button("📊 Análisis Sociodemográfico"):
-    navigation = "📊 Análisis Sociodemográfico"
-elif st.sidebar.button("💦 Leyes de Agua"):
-    navigation = "💦 Leyes de Agua"
-else:
-    navigation = "📘 Introducción, Zona de estudio"  # Valor predeterminado
+    st.session_state.navigation = "📘 Introducción, Zona de estudio"
+if st.sidebar.button("🗺️ Análisis Geográfico"):
+    st.session_state.navigation = "🗺️ Análisis Geográfico"
+if st.sidebar.button("📊 Análisis Sociodemográfico"):
+    st.session_state.navigation = "📊 Análisis Sociodemográfico"
+if st.sidebar.button("💦 Leyes de Agua"):
+    st.session_state.navigation = "💦 Leyes de Agua"
+
 st.sidebar.markdown("---")
 
-# Filtros
-st.sidebar.header("Filtros")
-municipios = st.sidebar.selectbox('Municipios', ['Municipio 1', 'Municipio 2', 'Municipio 3'])
-subcuencas = st.sidebar.selectbox('Subcuencas', ['Subcuenca 1', 'Subcuenca 2', 'Subcuenca 3'])
 
 # Mostrar contenido basado en la selección del menú de navegación
-if navigation == "📘 Introducción, Zona de estudio":
+if st.session_state.navigation == "📘 Introducción, Zona de estudio":
     st.markdown("<h2 style='color: #000000;'>Cuenca Rio Yaqui</h2>", unsafe_allow_html=True)  # Título en letras negras
     col1, col2 = st.columns([3, 2])
 
@@ -124,7 +125,15 @@ if navigation == "📘 Introducción, Zona de estudio":
             """, unsafe_allow_html=True
         )
 
-elif navigation == "💦 Leyes de Agua":
+elif st.session_state.navigation == "🗺️ Análisis Geográfico":
+    st.markdown("<h2 style='color: #000000;'>Análisis Geográfico</h2>", unsafe_allow_html=True)
+    # Aquí puedes agregar el contenido del Análisis Geográfico
+
+elif st.session_state.navigation == "📊 Análisis Sociodemográfico":
+    st.markdown("<h2 style='color: #000000;'>Análisis Sociodemográfico</h2>", unsafe_allow_html=True)
+    # Aquí puedes agregar el contenido del Análisis Sociodemográfico
+
+elif st.session_state.navigation == "💦 Leyes de Agua":
     # Función para incrustar PDF en Streamlit
     def show_pdf(file_path):
         with open(file_path, "rb") as f:
@@ -168,7 +177,6 @@ elif navigation == "💦 Leyes de Agua":
     for pdf_file in pdf_files:
         st.markdown(f"<h3 style='color: #000000;'>{pdf_file}</h3>", unsafe_allow_html=True)
         show_pdf(os.path.join(pdf_folder, pdf_file))
-
 # Sección Contacto
 st.sidebar.header("Contacto")
 st.sidebar.markdown(
@@ -180,6 +188,7 @@ st.sidebar.markdown(
     """, 
     unsafe_allow_html=True
 )
+
 # Logos en la misma línea
 st.sidebar.markdown("<h2 style='color:white;'> </h2>", unsafe_allow_html=True)
 col3, col4 = st.sidebar.columns(2)
@@ -192,4 +201,3 @@ with col4:
     logo2 = Image.open("logos/logo2.png")
     st.image(logo2, width=100)
 
-# Nuevo logo centrado debajo de los otros
