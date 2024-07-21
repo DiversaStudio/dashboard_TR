@@ -21,10 +21,13 @@ st.markdown(
     .stApp {{
         background-color: {colors["content_bg"]};
         color: {colors["text_color"]};
+        font-family: 'Arial', sans-serif;
     }}
     .css-1d391kg {{
         background-color: {colors["sidebar_bg"]};
         color: {colors["sidebar_text_color"]};
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }}
     .css-1lcbmhc.e1fqkh3o3 {{
         background-color: {colors["sidebar_bg"]};
@@ -45,6 +48,8 @@ st.markdown(
         height: 50px !important;
         border-radius: 5px !important;
         font-size: 16px !important;
+        margin-bottom: 10px !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }}
     .stButton > button:hover {{
         background-color: {colors["button_hover_bg"]} !important;
@@ -125,7 +130,7 @@ st.sidebar.markdown(
 
 # Logos en la misma línea
 st.sidebar.markdown("<h2 style='color:white;'> </h2>", unsafe_allow_html=True)
-col3, col4 = st.sidebar.columns(2)
+col3, col4, col5 = st.sidebar.columns(3)
 
 with col3:
     logo1 = Image.open("logos/logo1.png")
@@ -138,3 +143,11 @@ with col4:
 with col5:
     logo3 = Image.open("logos/logo3.png")
     st.image(logo3, width=100)
+
+# Sección de visualizaciones existentes
+st.header("Visualizaciones de Datos Existentes")
+existing_data_files = os.listdir('data')
+for file in existing_data_files:
+    if file.endswith('.pdf'):
+        st.subheader(file)
+        st.write("Archivo PDF subido")
