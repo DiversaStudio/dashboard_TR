@@ -3,6 +3,9 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from PIL import Image
+import os
+import base64
+from st_aggrid import AgGrid
 
 # Definir los colores
 colors = {
@@ -21,13 +24,10 @@ st.markdown(
     .stApp {{
         background-color: {colors["content_bg"]};
         color: {colors["text_color"]};
-        font-family: 'Arial', sans-serif;
     }}
     .css-1d391kg {{
         background-color: {colors["sidebar_bg"]};
         color: {colors["sidebar_text_color"]};
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }}
     .css-1lcbmhc.e1fqkh3o3 {{
         background-color: {colors["sidebar_bg"]};
@@ -48,11 +48,19 @@ st.markdown(
         height: 50px !important;
         border-radius: 5px !important;
         font-size: 16px !important;
-        margin-bottom: 10px !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }}
     .stButton > button:hover {{
         background-color: {colors["button_hover_bg"]} !important;
+    }}
+    .css-1vbkxwb, .css-1avcm0n, .css-1v3fvcr {{
+        background-color: {colors["button_bg"]} !important;
+        color: {colors["sidebar_text_color"]} !important;
+        border-color: {colors["button_bg"]} !important;
+    }}
+    .css-1vbkxwb:hover, .css-1avcm0n:hover, .css-1v3fvcr:hover {{
+        background-color: {colors["button_hover_bg"]} !important;
+        color: {colors["sidebar_text_color"]} !important;
+        border-color: {colors["button_hover_bg"]} !important;
     }}
     /* Ocultar la barra superior */
     #MainMenu {{
@@ -116,6 +124,42 @@ if navigation == "📘 Introducción, Zona de estudio":
             """, unsafe_allow_html=True
         )
 
+elif navigation == "💦 Leyes de Agua":
+    # Función para incrustar PDF en Streamlit
+    def show_pdf(file_path):
+        with open(file_path, "rb") as f:
+            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+            pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
+            st.markdown(pdf_display, unsafe_allow_html=True)
+
+    # Mostrar título y descripción
+    st.markdown("<h1>Leyes de Protección del Agua en México</h1>", unsafe_allow_html=True)
+    st.markdown(
+        """
+        Aquí encontrarás una recopilación de las leyes y regulaciones más importantes relacionadas con la protección del agua en México. Estos documentos son fundamentales para entender el marco legal que rige la gestión y conservación de los recursos hídricos en el país.
+        """
+    )
+
+    # Ruta al archivo Excel
+    excel_path = "proteccion_leyes/Leyes .xlsx"
+
+    # Verificar si el archivo existe y leerlo
+    if os.path.exists(excel_path):
+        df_excel = pd.read_excel(excel_path)
+        st.subheader("Resumen de Leyes")
+        AgGrid(df_excel)
+    else:
+        st.error(f"Error al leer el archivo Excel: {excel_path} no se encontró.")
+
+    # Mostrar PDFs
+    st.subheader("Documentos en PDF")
+    pdf_folder = "proteccion_leyes"
+    pdf_files = [f for f in os.listdir(pdf_folder) if f.endswith('.pdf')]
+
+    for pdf_file in pdf_files:
+        st.markdown(f"### {pdf_file}")
+        show_pdf(os.path.join(pdf_folder, pdf_file))
+
 # Sección Contact
 st.sidebar.header("Contacto")
 st.sidebar.markdown(
@@ -130,7 +174,7 @@ st.sidebar.markdown(
 
 # Logos en la misma línea
 st.sidebar.markdown("<h2 style='color:white;'> </h2>", unsafe_allow_html=True)
-col3, col4, col5 = st.sidebar.columns(3)
+col3, col4 = st.sidebar.columns(2)
 
 with col3:
     logo1 = Image.open("logos/logo1.png")
@@ -140,14 +184,7 @@ with col4:
     logo2 = Image.open("logos/logo2.png")
     st.image(logo2, width=100)
 
-with col5:
-    logo3 = Image.open("logos/logo3.png")
-    st.image(logo3, width=100)
-
-# Sección de visualizaciones existentes
-st.header("Visualizaciones de Datos Existentes")
-existing_data_files = os.listdir('data')
-for file in existing_data_files:
-    if file.endswith('.pdf'):
-        st.subheader(file)
-        st.write("Archivo PDF subido")
+# Nuevo logo centrado debajo de los otros dos logos
+st.sidebar.markdown("<h2 style='color:white;'> </h2>", unsafe_allow_html=True)
+logo3 = Image.open("logos/logo3.png")
+st.sidebar.image(logo3, width=100)
