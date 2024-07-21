@@ -1,0 +1,9 @@
+{
+    "usernames": {
+        "diana@diversa.studio": {
+            "name": "Diana",
+            "password": "$2b$12$X/Hjv.OXO/MO8Qp5uvn3CuZkF/3gnbs3/Z9Kj2gJcbWJW60/Mdq.C",  # hashed password
+            "email": "diana@diversa.studio"
+        }
+    }
+}

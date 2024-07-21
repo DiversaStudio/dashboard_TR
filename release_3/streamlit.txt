@@ -1,3 +1,4 @@
+
 import altair as alt
 import numpy as np
 import pandas as pd
@@ -10,8 +11,17 @@ colors = {
     "content_bg": "#FFFFFF",
     "text_color": "#000000",  # Color negro para el texto
     "sidebar_text_color": "#FFFFFF",  # Color blanco para el texto de la barra lateral
-    "button_bg": "#688D98",  # Color para los botones
-    "button_hover_bg": "#327378"  # Color de los botones al pasar el ratón
+    "color1": "#D0DED4",
+    "color2": "#E5E1C1",
+    "color3": "#CAC3A9",
+    "color4": "#D0E6EF",
+    "color5": "#B0E2E7",
+    "color6": "#70D3DC",
+    "color7": "#8CA8AE",
+    "color8": "#688D98",
+    "color9": "#327378",
+    "color10": "#4373B3",
+    "color11": "#152F54"
 }
 
 # Aplicar colores personalizados a la interfaz
@@ -40,14 +50,14 @@ st.markdown(
     }}
     .stButton > button {{
         color: #FFFFFF !important;
-        background-color: {colors["button_bg"]} !important;
+        background-color: {colors["color8"]} !important;
         width: 100% !important;
         height: 50px !important;
         border-radius: 5px !important;
         font-size: 16px !important;
     }}
     .stButton > button:hover {{
-        background-color: {colors["button_hover_bg"]} !important;
+        background-color: {colors["color9"]} !important;
     }}
     /* Ocultar la barra superior */
     #MainMenu {{
@@ -64,10 +74,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Logo en la barra lateral
-st.sidebar.image("logos/logo1.png", use_column_width=True)
-
-# Título y descripción en la barra lateral
+# Sidebar con menú de navegación
 st.sidebar.title("Gobernanza del Agua Yaqui Vícam México")
 st.sidebar.markdown("""
     <div style='color: #FFFFFF;'>
@@ -76,7 +83,6 @@ st.sidebar.markdown("""
 """, unsafe_allow_html=True)
 
 # Convertir el menú de navegación a botones
-st.sidebar.markdown("---")
 if st.sidebar.button("📘 Introducción, Zona de estudio"):
     navigation = "📘 Introducción, Zona de estudio"
 elif st.sidebar.button("🗺️ Análisis Geográfico"):
@@ -87,7 +93,16 @@ elif st.sidebar.button("💦 Leyes de Agua"):
     navigation = "💦 Leyes de Agua"
 else:
     navigation = "📘 Introducción, Zona de estudio"  # Valor predeterminado
-st.sidebar.markdown("---")
+
+# Mostrar contenido basado en la selección del menú de navegación
+#if navigation == "📘 Introducción, Zona de estudio":
+#    st.write("Has seleccionado Introducción, Zona de estudio")
+#elif navigation == "🗺️ Análisis Geográfico":
+#    st.write("Has seleccionado Análisis Geográfico")
+#elif navigation == "📊 Análisis Sociodemográfico":
+ #   st.write("Has seleccionado Análisis Sociodemográfico")
+#elif navigation == "💦 Leyes de Agua":
+#    st.write("Has seleccionado Leyes de Agua")
 
 # Filtros
 st.sidebar.header("Filtros")
@@ -129,8 +144,8 @@ col3, col4 = st.sidebar.columns(2)
 
 with col3:
     logo1 = Image.open("logos/logo1.png")
-    st.image(logo1, width=100)
+    st.image(logo1, width=150)
 
 with col4:
     logo2 = Image.open("logos/logo2.png")
-    st.image(logo2, width=100)
+    st.image(logo2, width=150)
