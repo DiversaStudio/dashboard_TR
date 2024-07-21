@@ -5,7 +5,7 @@ import streamlit as st
 from PIL import Image
 import os
 import base64
-from st_aggrid import AgGrid
+from st_aggrid import AgGrid, GridOptionsBuilder, AgGridTheme
 
 # Definir los colores
 colors = {
@@ -133,34 +133,43 @@ elif navigation == "💦 Leyes de Agua":
             st.markdown(pdf_display, unsafe_allow_html=True)
 
     # Mostrar título y descripción
-    st.markdown("<h1>Leyes de Protección del Agua en México</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='color: #000000;'><b>Leyes de Protección del Agua en México</b></h1>", unsafe_allow_html=True)
     st.markdown(
         """
+        <div style="color: #000000;">
         Aquí encontrarás una recopilación de las leyes y regulaciones más importantes relacionadas con la protección del agua en México. Estos documentos son fundamentales para entender el marco legal que rige la gestión y conservación de los recursos hídricos en el país.
-        """
+        </div>
+        """, unsafe_allow_html=True
     )
 
     # Ruta al archivo Excel
-    excel_path = "proteccion_leyes/Leyes .xlsx"
+    excel_path = "proteccion_leyes/Leyes.xlsx"
 
     # Verificar si el archivo existe y leerlo
     if os.path.exists(excel_path):
         df_excel = pd.read_excel(excel_path)
-        st.subheader("Resumen de Leyes")
-        AgGrid(df_excel)
+        st.markdown("<h2 style='color: #000000;'><b>Resumen de Leyes</b></h2>", unsafe_allow_html=True)
+        gb = GridOptionsBuilder.from_dataframe(df_excel)
+        gb.configure_default_column(cellStyle={'color': colors["sidebar_text_color"], 'backgroundColor': colors["button_bg"]})
+        gb.configure_column("Ley/ Norma/ Constitución/ Programas", headerStyle={'fontWeight': 'bold', 'color': colors["text_color"]})
+        gb.configure_column("Artículo", headerStyle={'fontWeight': 'bold', 'color': colors["text_color"]})
+        gb.configure_column("¿Qué establece?", headerStyle={'fontWeight': 'bold', 'color': colors["text_color"]})
+        gb.configure_column("Link", headerStyle={'fontWeight': 'bold', 'color': colors["text_color"]})
+        gridOptions = gb.build()
+        AgGrid(df_excel, gridOptions=gridOptions, theme='streamlit')
     else:
         st.error(f"Error al leer el archivo Excel: {excel_path} no se encontró.")
 
     # Mostrar PDFs
-    st.subheader("Documentos en PDF")
+    st.markdown("<h2 style='color: #000000;'><b>Documentos en PDF</b></h2>", unsafe_allow_html=True)
     pdf_folder = "proteccion_leyes"
     pdf_files = [f for f in os.listdir(pdf_folder) if f.endswith('.pdf')]
 
     for pdf_file in pdf_files:
-        st.markdown(f"### {pdf_file}")
+        st.markdown(f"<h3 style='color: #000000;'>{pdf_file}</h3>", unsafe_allow_html=True)
         show_pdf(os.path.join(pdf_folder, pdf_file))
 
-# Sección Contact
+# Sección Contacto
 st.sidebar.header("Contacto")
 st.sidebar.markdown(
     """
@@ -171,7 +180,6 @@ st.sidebar.markdown(
     """, 
     unsafe_allow_html=True
 )
-
 # Logos en la misma línea
 st.sidebar.markdown("<h2 style='color:white;'> </h2>", unsafe_allow_html=True)
 col3, col4 = st.sidebar.columns(2)
@@ -184,7 +192,4 @@ with col4:
     logo2 = Image.open("logos/logo2.png")
     st.image(logo2, width=100)
 
-# Nuevo logo centrado debajo de los otros dos logos
-st.sidebar.markdown("<h2 style='color:white;'> </h2>", unsafe_allow_html=True)
-logo3 = Image.open("logos/logo3.png")
-st.sidebar.image(logo3, width=100)
+# Nuevo logo centrado debajo de los otros
