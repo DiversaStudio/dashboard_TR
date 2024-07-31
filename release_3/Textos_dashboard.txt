@@ -1,0 +1,24 @@
+Texto de barra lateral:
+Gobernanza del Agua Yaqui Vícam México
+Descubre información esencial sobre la cuenca del río Yaqui y la comunidad Yaqui de Vícam, Sonora. Aquí encontrarás datos sociodemográficos actualizados, análisis de la gestión hídrica local y detalles sobre los desafíos y oportunidades en el manejo del agua en esta región. 
+
+Texto introducción:
+Introducción
+Uno de los temas centrales para la supervivencia de la humanidad es la forma en que nos relacionamos con todas las formas de vida y las interacciones que se generan en el tiempo y espacio que habitan. En este contexto, la gobernanza del agua es crucial, especialmente para comunidades como la tribu Yaqui de Vícam, México. Este proyecto explora cómo la Inteligencia Artificial puede ser una herramienta útil para la toma de decisiones sobre el uso de los recursos naturales, específicamente el agua, y como un instrumento político para contrarrestar la confrontación con el Estado y evitar el despojo de sus recursos.
+Gobernanza del Agua
+La gobernanza del agua es un tema fundamental que se vuelve cada vez más relevante en un planeta con recursos finitos. Al final del siglo pasado, cuando se hizo evidente que el crecimiento económico constante no es sostenible, se hizo necesario "cambiar de rumbo" y avanzar hacia un desarrollo económico sostenible. En 1992, durante la cumbre internacional ECO 92, los gobiernos participantes acordaron una serie de documentos clave que sentaron las bases para una nueva política global sobre la gobernanza de los recursos naturales. Entre estos documentos se encuentran la Declaración de Río sobre el Medio Ambiente y el Desarrollo, la Agenda 21 y las convenciones sobre el cambio climático y la biodiversidad. En 2015, la conceptualización de lo que implica el desarrollo sostenible se reflejó en la creación de la Agenda 2030, que estableció 17 Objetivos de Desarrollo Sostenible (ODS). Estos objetivos abarcan desde la erradicación de la pobreza y el hambre hasta la acción por el clima y la vida en ecosistemas terrestres y acuáticos. Al mismo tiempo, en 2011, nació la Alianza para el Gobierno Abierto (OGP) con el objetivo de lograr formas de gobernanza más democráticas basadas en metodologías innovadoras acordadas por la sociedad civil, el gobierno y el sector empresarial. A pesar de los acuerdos y compromisos firmados, la implementación efectiva de estas políticas sigue siendo un desafío, especialmente en la vinculación de los ODS con los derechos humanos reconocidos. 
+
+Texto Zona de estudio:Cuenca del Río Yaqui
+El mapa muestra la cuenca del Río Yaqui en el noroeste de México, destacando tres subcuencas: A. Sahuaral (azul oscuro), Álvaro Obregón (azul medio) y Vícam (azul claro). El río principal, el Yaqui, está marcado en rojo y fluye desde el noreste hacia el suroeste, desembocando en el Golfo de California. La red hidrográfica, representada por líneas blancas, ilustra los ríos y arroyos que alimentan al Yaqui. Además, se observa una cuadrícula en la parte inferior que indica áreas urbanas, proporcionando una visión detallada de la distribución y el flujo de agua en la región. 
+
+Texto Análisis Sociodemográfico:
+Este mapa de Sonora abarca varios municipios clave: Bácum, Cajeme, Empalme, Guaymas y San Ignacio Río Muerto. Se encuentra delimitado por coordenadas geográficas específicas, con latitudes que oscilan entre 26.5 y 29.5 grados norte, y longitudes desde -111.5 hasta -109 grados oeste. Un elemento destacado es una línea azul que demarca el "Territorio Yaqui", una región histórica y culturalmente significativa que se extiende a través de varios de estos municipios, incluyendo la comunidad de Vícam. Existen numerosos puntos amarillos que representan localidades, variando desde pequeños asentamientos de uno o dos hogares hasta poblaciones más grandes de hasta 200 hogares. Estos puntos ilustran la diversidad de asentamientos en la región. Los municipios se distinguen por diferentes colores, siendo Guaymas el más extenso, ocupando gran parte del área central y costera del mapa. Es importante resaltar que el territorio yaqui de Vícam, una zona de gran relevancia cultural y étnica, se encuentra distribuido a lo largo de estos municipios, subrayando la importancia de la presencia yaqui en la región.
+Análisis Sociodemográfico
+Esta sección presenta datos extraídos del Censo de Población y Vivienda 2020, llevado a cabo por el Instituto Nacional de Estadística y Geografía (INEGI) de México. Los datos proporcionados reflejan la realidad demográfica de la región, ofreciendo una base sólida para análisis socioeconómicos y planificación de políticas públicas. 
+
+
+Texto Leyes de agua
+Leyes de Protección del Agua en México
+Aquí encontrarás una recopilación de las leyes y regulaciones más importantes relacionadas con la protección del agua en México. Estos documentos son fundamentales para entender el marco legal que rige la gestión y conservación de los recursos hídricos en el país. 
+
+

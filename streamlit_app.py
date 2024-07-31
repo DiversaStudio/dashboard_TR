@@ -121,11 +121,13 @@ st.sidebar.markdown("<hr style='border-color: #688C98;'>", unsafe_allow_html=Tru
 
 # Inicializar la variable de estado para la navegación
 if "navigation" not in st.session_state:
-    st.session_state.navigation = "📍Introducción-Zona de estudio"
+    st.session_state.navigation = "📖 Introducción"
 
 # Crear los botones de navegación principales
-if st.sidebar.button("📍 Introducción-Zona de estudio"):
-    st.session_state.navigation = "📍Introducción-Zona de estudio"
+if st.sidebar.button("📖 Introducción"):
+    st.session_state.navigation = "📖 Introducción"
+if st.sidebar.button("📍Zona de estudio"):
+    st.session_state.navigation = "📍Zona de estudio"
 if st.sidebar.button("📊 Análisis Sociodemográfico"):
     st.session_state.navigation = "📊 Análisis Sociodemográfico"
 if st.sidebar.button("🌿 Cobertura del Suelo"):
@@ -134,8 +136,6 @@ if st.sidebar.button("🏞️ Clasificación histórica"):
     st.session_state.navigation = "🏞️ Clasificación histórica"
 if st.sidebar.button("💨 Evapotranspiración"):
     st.session_state.navigation = "💨 Evapotranspiración"
-if st.sidebar.button("🌧️ Precipitaciones"):
-    st.session_state.navigation = "🌧️ Precipitaciones"
 if st.sidebar.button("💧 Acumulaciones"):
     st.session_state.navigation = "💧 Acumulaciones"
 if st.sidebar.button("💦 Leyes del Agua en México"):
@@ -166,8 +166,8 @@ def create_metric_card(title, value, delta, icon):
     </div>
     """
 
-# Mostrar contenido basado en la selección del menú de navegación "📍Introducción-Zona de estudio"
-if st.session_state.navigation == "📍Introducción-Zona de estudio":
+# Mostrar contenido basado en la selección del menú de navegación "📖 Introducción"
+if st.session_state.navigation == "📖 Introducción":
     st.markdown(
         """
         <h2 style='font-family: Arial, sans-serif; font-size: 20px; color: #1B2F54;'>Introducción</h2>
@@ -187,30 +187,100 @@ if st.session_state.navigation == "📍Introducción-Zona de estudio":
     )
     st.markdown(
         """
-        <h2 style='font-family: Arial, sans-serif; font-size: 20px; color: #1B2F54;'>Cuenca del Río Yaqui</h2>
+        <h2 style='font-family: Arial, sans-serif; font-size: 20px; color: #1B2F54;'>Primera Fase del Proyecto</h2>
         <div style="color: #000000; font-size: 14px;">
-        El mapa muestra la cuenca del Río Yaqui en el noroeste de México, destacando tres subcuencas: A. Sahuaral (azul oscuro), Álvaro Obregón (azul medio) y Vícam (azul claro). El río principal, el Yaqui, está marcado en rojo y fluye desde el noreste hacia el suroeste, desembocando en el Golfo de California. La red hidrográfica, representada por líneas blancas, ilustra los ríos y arroyos que alimentan al Yaqui. Además, se observa una cuadrícula en la parte inferior que  indica áreas urbanas, proporcionando una visión detallada de la distribución y el flujo de agua en la región.
+        La primera etapa del proyecto se enfoca en establecer las bases para un enfoque innovador y transformador en la gobernanza de los recursos naturales. Inspirado por la cita de Goethe en Fausto, "¿Cómo te he de aprehender, Naturaleza infinita?", esta fase busca romper con la fragmentación y división tradicionales, promoviendo un conocimiento integral basado en la experiencia, los sentidos y las emociones. Priorizamos la construcción colectiva a través del diálogo y la escucha, alejándose de prácticas coloniales y extractivistas de datos e información. 
+        Las metodologías empleadas incluyen la educación popular, el arte comunitario y la ternura radical, fomentando relaciones intergeneracionales que enriquecen la perspectiva del proyecto. 
+        La autodeterminación de la comunidad es fundamental, permitiendo decidir qué datos compartir y construyendo un horizonte común basado en una cultura narrada y compartida. 
         </div>
         """, unsafe_allow_html=True
     )
+    st.markdown(
+    """
+    <h2 style='font-family: Arial, sans-serif; font-size: 20px; color: #1B2F54;'>Actividades</h2>
 
-# Mostrar el mapa en un tamaño más grande
-    st.image("mapas/cuenca_rio_yaqui.png", use_column_width=True)
+    <h3 style='font-family: Arial, sans-serif; font-size: 18px; color: #1B2F54;'>El paisaje de Vícam</h3>
+    <div style="color: #000000; font-size: 14px;">
+    Esta actividad respondía a las preguntas: ¿Cómo es el paisaje de la comunidad? ¿Cómo se ha modificado a través del tiempo? Pasado y presente.
+    Lxs personxs realizaron dos dibujos, el primero mostraba lo que contaban los abuelos que era Vícam, y el segundo lo que es ahora. Estos dos dibujos permitirán ver una comparación del paisaje de años atrás y actual, enfatizando en la degradación del ecosistema. Esta actividad abre el diálogo intergeneracional al preguntarse entre ellas cómo era antes y cómo es ahora.
+    </div>
+    """, unsafe_allow_html=True
+    )
 
-    # Rediseñar la fila de KPIs
-    st.markdown("<h3 style='font-family: Arial, sans-serif; font-size: 24px; color: #1B2F54; margin-bottom: 20px;'>Indicadores Importantes </h3>", unsafe_allow_html=True)
-
-    col1, col2, col3 = st.columns(3)
+    # Mostrar las imágenes correspondientes
+    col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown(create_metric_card("Área total de la cuenca", "72,540 km²", "+2%", "🌊"), unsafe_allow_html=True)
+        st.image("etapa1/36_antes.jpg", caption="Vícam Antes", width=280)
 
     with col2:
-        st.markdown(create_metric_card("Área promedio de subcuenca", "24,180 km²", "+1%", "🗺️"), unsafe_allow_html=True)
+        st.image("etapa1/36_ahora.jpg", caption="Vícam Ahora", width=280)
+    st.markdown(
+    """
+    <h3 style='font-family: Arial, sans-serif; font-size: 18px; color: #1B2F54;'>La memoria de Vícam</h3>
+    <div style="color: #000000; font-size: 14px;">
+    Lxs personxs participantes hicieron un juego nombrando las especies de flora y fauna que existieron y existen en la comunidad.
+    Con esta actividad se genera un mapeo de cómo han desaparecido algunas especies debido a la degradación del ecosistema en el territorio.
+    </div>
 
+    <h3 style='font-family: Arial, sans-serif; font-size: 18px; color: #1B2F54;'>Carta al río Yaqui</h3>
+    <div style="color: #000000; font-size: 14px;">
+    Realizamos una carta al río Yaqui, nombrando cuál es el significado del río para cada integrante, haciendo conciencia de su valor dentro de la comunidad y de la historia de lucha y resistencia que existe alrededor de él.
+    </div>
+
+    <h3 style='font-family: Arial, sans-serif; font-size: 18px; color: #1B2F54;'>Violentómetro</h3>
+    <div style="color: #000000; font-size: 14px;">
+    En esta actividad lxs participantes nombran las múltiples violencias que aquejan a la comunidad, el grado de afectación que provocan y las mayores preocupaciones. Esta dinámica revela problemas que en muchos casos no se nombran o se ocultan y se consideran de índole privada. Socializamos los problemas ynos permitimos imaginar algunas soluciones posibles.
+    </div>
+
+    <h3 style='font-family: Arial, sans-serif; font-size: 18px; color: #1B2F54;'>Canción al río Yaqui</h3>
+    <div style="color: #000000; font-size: 14px;">
+    Recopilamos narrativas que describen el territorio y sus cambios a lo largo de la historia hechos por las presas, empresas y acueductos.
+    </div>
+    """, 
+    unsafe_allow_html=True
+    )
+# Mostrar la imagen correspondiente
+    st.image("etapa1/cancion.png", caption="Canción al río Yaqui", use_column_width=True)
+
+# Función actualizada para crear tarjetas de métricas sin porcentajes
+def create_metric_card(title, value, icon):
+    return f"""
+    <div style="
+        background-color: white;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    ">
+        <h4 style="color: #1B2F54; margin-bottom: 10px;">{title}</h4>
+        <p style="font-size: 24px; font-weight: bold; margin: 0;">{icon} {value}</p>
+    </div>
+    """
+
+# Sección Zona de estudio
+if st.session_state.navigation == "📍Zona de estudio":
+    st.markdown(
+        """
+        <h2 style='font-family: Arial, sans-serif; font-size: 20px; color: #1B2F54;'>Cuenca del Río Yaqui</h2>
+        <div style="color: #000000; font-size: 14px;">
+        El mapa muestra la cuenca del Río Yaqui en el noroeste de México, destacando tres subcuencas: A. Sahuaral (azul oscuro), Álvaro Obregón (azul medio) y Vícam (azul claro). El río principal, el Yaqui, está marcado en rojo y fluye desde el noreste hacia el suroeste, desembocando en el Golfo de California. La red hidrográfica, representada por líneas blancas, ilustra los ríos y arroyos que alimentan al Yaqui. Además, se observa una cuadrícula en la parte inferior que indica áreas urbanas, proporcionando una visión detallada de la distribución y el flujo de agua en la región.
+        </div>
+        """, unsafe_allow_html=True
+    )
+    # Mostrar el mapa en un tamaño más grande
+    st.image("mapas/cuenca_rio_yaqui.png", use_column_width=True)
+    
+    # Rediseñar la fila de KPIs
+    st.markdown("<h3 style='font-family: Arial, sans-serif; font-size: 24px; color: #1B2F54; margin-bottom: 20px;'>Indicadores Importantes </h3>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown(create_metric_card("Área total de la cuenca", "72,540 km²", "🌊"), unsafe_allow_html=True)
+    with col2:
+        st.markdown(create_metric_card("Área promedio de subcuenca", "24,180 km²", "🗺️"), unsafe_allow_html=True)
     with col3:
-        st.markdown(create_metric_card("Longitud del Río Yaqui", "320 km", "+5%", "🏞️"), unsafe_allow_html=True)
-
+        st.markdown(create_metric_card("Longitud del Río Yaqui", "320 km", "🏞️"), unsafe_allow_html=True)
+    
     # Agregar una descripción general de los KPIs
     st.markdown("""
     <div style="
@@ -221,13 +291,11 @@ if st.session_state.navigation == "📍Introducción-Zona de estudio":
         font-size: 14px;
         color: #333;
     ">
-        <strong>Análisis de KPIs:</strong> Estos indicadores muestran un crecimiento positivo en todos los aspectos de la cuenca del Río Yaqui. 
-        El aumento del área total y de las subcuencas sugiere una expansión de la zona de influencia del río, 
-        mientras que el incremento en la longitud del río podría indicar la incorporación de nuevos afluentes o una mayor precisión en las mediciones.
+        <strong>Análisis de KPIs:</strong> Estos indicadores muestran las dimensiones clave de la cuenca del Río Yaqui.
+        El área total de la cuenca y el área promedio de las subcuencas proporcionan una idea de la extensión del sistema hidrológico,
+        mientras que la longitud del Río Yaqui indica el alcance del río principal en la región.
     </div>
     """, unsafe_allow_html=True)
-
-
 
 
 # Sección ANALISIS SOCIODEMOGRAGICO
@@ -238,14 +306,7 @@ elif st.session_state.navigation == "📊 Análisis Sociodemográfico":
     st.image("mapas/territorio_yaqui.png", use_column_width=True)
     
     # Texto explicativo del mapa
-    st.markdown(
-    """
-    <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
-    Este mapa de Sonora abarca varios municipios clave: Bácum, Cajeme, Empalme, Guaymas y San Ignacio Río Muerto. Se encuentra delimitado por coordenadas geográficas específicas, con latitudes que oscilan entre 26.5 y 29.5 grados norte, y longitudes desde -111.5 hasta -109 grados oeste. Un elemento destacado es una línea azul que demarca el "Territorio Yaqui", una región histórica y culturalmente significativa que se extiende a través de varios de estos municipios, incluyendo la comunidad de Vícam.
-    Existen numerosos puntos amarillos que representan localidades, variando desde pequeños asentamientos de uno o dos hogares hasta poblaciones más grandes de hasta 200 hogares. Estos puntos ilustran la diversidad de asentamientos en la región.
-    Los municipios se distinguen por diferentes colores, siendo Guaymas el más extenso, ocupando gran parte del área central y costera del mapa. Es importante resaltar que el territorio yaqui de Vícam, una zona de gran relevancia cultural y étnica, se encuentra distribuido a lo largo de estos municipios, subrayando la importancia de la presencia yaqui en la región.
-    """, unsafe_allow_html=True
-    )
+    
     st.markdown("<hr style='border:1px solid #688C98;'>", unsafe_allow_html=True)
 
     # Título de análisis sociodemográfico y texto introductorio
@@ -360,17 +421,18 @@ if st.session_state.navigation == '🌿 Cobertura del Suelo':
     st.markdown("<h2 style='font-family: Arial, sans-serif; font-size: 24px; color: #1B2F54;'>Evolución de la Cobertura del Suelo en la Cuenca del Río Yaqui</h2>", unsafe_allow_html=True)
 
     # Intentar usar toggle_switch, si falla, usar st.checkbox con estilo personalizado
-    try:
-        show_gif = toggle_switch(
-            label="Mostrar GIF animado",
-            default_value=False,
-            label_after=True,
-            inactive_color="#BFC0A6",
-            active_color="#83DADD",
-            track_color="#3279C1"
-        )
+    try:show_gif = toggle_switch(
+        label="Mostrar GIF animado",
+        #default_value=False,
+        #label_after=True,
+        #inactive_color="#BFC0A6",
+        #active_color="#83DADD",
+        #track_color="#3279C1",
+        #label_style={'color': 'blue', 'font-weight': 'bold'}  # Estilo para texto negro y negrita
+    )
     except:
-        show_gif = st.checkbox("Mostrar GIF animado")
+        show_gif = st.checkbox("**Mostrar GIF animado**")
+
 
     # Primera imagen/GIF y texto
     if show_gif:
@@ -473,17 +535,73 @@ elif st.session_state.navigation == '🏞️ Clasificación histórica':
                 """, unsafe_allow_html=True
             )
 
+
 elif st.session_state.navigation == '💨 Evapotranspiración':
     st.markdown("<h2 style='font-family: Arial, sans-serif; font-size: 24px; color: #1B2F54;'>Análisis de Evapotranspiración</h2>", unsafe_allow_html=True)
-    # Replica la estructura de Cobertura del Suelo aquí
+   
+    # Estilo personalizado con !important para forzar el color negro
+    st.markdown("""
+        <style>
+        .stCheckbox, .stCheckbox > label, .css-1wivap2, .css-1wivap2 > label {
+            color: black !important;
+            font-weight: bold !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+   
+    # Usar solo st.checkbox con estilo forzado a negro
+    show_gif = st.checkbox("Mostrar GIF animado", key="show_gif_checkbox")
 
-elif st.session_state.navigation == '🌧️ Precipitaciones':
-    st.markdown("<h2 style='font-family: Arial, sans-serif; font-size: 24px; color: #1B2F54;'>Análisis de Precipitaciones</h2>", unsafe_allow_html=True)
-    # Replica la estructura de Cobertura del Suelo aquí
+    # Primera imagen/GIF y texto
+    if show_gif:
+        gif_html = gif_to_html("geografico/annual_g.gif")
+        st.markdown(gif_html, unsafe_allow_html=True)
+    else:
+        st.image("geografico/annual_Subcuencasg.png", use_column_width=True)
+   
+    # ... (resto del código sin cambios)
+    st.markdown(
+        """
+        <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
+        Este mapa muestra la evapotranspiración anual en la región del Río Yaqui en Sonora, México. La evapotranspiración es un proceso crucial en el ciclo hidrológico que combina la evaporación del agua desde la superficie terrestre y la transpiración de las plantas. El mapa utiliza una escala de colores para representar los diferentes niveles de evapotranspiración en la cuenca, proporcionando una visión detallada de cómo varía este fenómeno en diferentes áreas de la región. Esta información es esencial para entender el balance hídrico y planificar la gestión sostenible del agua en la cuenca del Río Yaqui.
+        </div>
+        """, unsafe_allow_html=True
+    )
+    
+    if show_gif:
+        col1, col2 = st.columns([3, 2])
+        with col1:
+            st.image("geografico/area_time_series.png", use_column_width=True)
+        with col2:
+            st.markdown("<h3 style='font-family: Arial, sans-serif; font-size: 20px; color: #1B2F54;'>Serie de Tiempo</h3>", unsafe_allow_html=True)
+            st.markdown(
+                """
+                <div style="font-size: 14px; color: #333;">
+                Este gráfico muestra la evolución temporal de la evapotranspiración en la región del Río Yaqui. La serie de tiempo permite observar las tendencias y patrones en la evapotranspiración a lo largo de los años. Se pueden apreciar las variaciones estacionales y anuales, lo que es crucial para entender cómo los cambios climáticos y otros factores ambientales afectan la disponibilidad de agua en la cuenca. Esta información es valiosa para la planificación de recursos hídricos y la adaptación a largo plazo de las prácticas de gestión del agua en la región.
+                </div>
+                """, unsafe_allow_html=True
+            )
+
 
 elif st.session_state.navigation == '💧 Acumulaciones':
-    st.markdown("<h2 style='font-family: Arial, sans-serif; font-size: 24px; color: #1B2F54;'>Análisis de Acumulaciones de Agua</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='font-family: Arial, sans-serif; font-size: 24px; color: #1B2F54;'>Acumulaciones de Caudales</h2>", unsafe_allow_html=True)
+    
+    # Mostrar la imagen del mapa
+    st.image("geografico/flow.png", use_column_width=True)
+   
+    st.markdown(
+        """
+        <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
+        Este mapa muestra las acumulaciones de caudales en la región del Río Yaqui en Sonora, México. Las acumulaciones de caudales son cruciales para entender cómo se distribuye y acumula el agua a lo largo de la cuenca hidrográfica. El mapa utiliza una escala de colores para representar los diferentes niveles de acumulación de agua, proporcionando una visión detallada de cómo varía este fenómeno en diferentes áreas de la región. Esta información es esencial para la gestión de recursos hídricos, la planificación de infraestructuras y la prevención de inundaciones en la cuenca del Río Yaqui.
+        </div>
+        """, unsafe_allow_html=True
+    )
+# Mostrar la imagen correspondiente
+    st.image("geografico/flow2.png", caption="titulo", use_column_width=True)
 
+
+
+# SECCIÓN LEYES 
 elif st.session_state.navigation == "💦 Leyes del Agua en México":
     # Función para incrustar PDF en Streamlit
     def show_pdf(file_path):
@@ -509,7 +627,7 @@ elif st.session_state.navigation == "💦 Leyes del Agua en México":
     if os.path.exists(excel_path):
         df_excel = pd.read_excel(excel_path)
         st.markdown("<h3 style='font-family: Arial, sans-serif; font-size: 20px; color: #1B2F54;'>Resumen de Leyes</h3>", unsafe_allow_html=True)
-        
+
         gb = GridOptionsBuilder.from_dataframe(df_excel)
         gb.configure_default_column(cellStyle={'color': '#333', 'backgroundColor': '#FFFFFF'})
         gb.configure_column("Ley/ Norma/ Constitución/ Programas", headerStyle={'fontWeight': 'bold', 'color': '#1B2F54'})
@@ -580,25 +698,24 @@ st.sidebar.markdown("<h4 style='color: white; font-family: Arial, sans-serif; te
 # Contenedor para los logos
 logo_container = st.sidebar.container()
 
-# Dos logos en la misma línea
+# Función para centrar y redimensionar logos
+def centered_logo(file_path, width=150):
+    col1, col2, col3 = logo_container.columns([1, 2, 1])
+    with col2:
+        logo = Image.open(file_path)
+        st.image(logo, width=width, use_column_width=True)
+
+# Logo Yaqui centrado y más grande
+centered_logo("logos/yaqui.png")
+
+# Dos logos en la misma línea, centrados
 col1, col2 = logo_container.columns(2)
 with col1:
     logo1 = Image.open("logos/logo1.png")
-    st.image(logo1, width=120)  # Aumentado de 80 a 120
+    st.image(logo1, width=100, use_column_width=True)
 with col2:
     logo2 = Image.open("logos/logo2.png")
-    st.image(logo2, width=120)  # Aumentado de 80 a 120
-
-# Tercer logo centrado debajo
-logo_container.markdown("<div style='display: flex; justify-content: center: 100px; margin-top: 20px;'>", unsafe_allow_html=True)
-logo3 = Image.open("logos/logo3.png")
-logo_container.image(logo3, width=100)  # Aumentado de 60 a 100
-logo_container.markdown("</div>", unsafe_allow_html=True)
-
-# Nota 
-st.sidebar.markdown(
-    "<div style='text-align: center; color: white; font-size: 12px; margin-top: 20px;'>"
-    "Por la defensa del agua y la resistencia Yaqui✊🏾"
-    "</div>",
-    unsafe_allow_html=True
-)
+    st.image(logo2, width=100, use_column_width=True)
+# Texto "Con el apoyo de" en blanco y tercer logo comentados
+#logo_container.markdown("<div style='text-align: center; margin: 20px 0; color: white;'>Con el apoyo de</div>", unsafe_allow_html=True)
+#centered_logo("logos/logo3.png")
