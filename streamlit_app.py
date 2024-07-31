@@ -271,7 +271,7 @@ if st.session_state.navigation == "📍Zona de estudio":
     # Mostrar el mapa en un tamaño más grande
     st.image("mapas/cuenca_rio_yaqui.png", use_column_width=True)
     
-    # Rediseñar la fila de KPIs
+    # Rediseñar la fila de indicadores
     st.markdown("<h3 style='font-family: Arial, sans-serif; font-size: 24px; color: #1B2F54; margin-bottom: 20px;'>Indicadores Importantes </h3>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -281,7 +281,7 @@ if st.session_state.navigation == "📍Zona de estudio":
     with col3:
         st.markdown(create_metric_card("Longitud del Río Yaqui", "320 km", "🏞️"), unsafe_allow_html=True)
     
-    # Agregar una descripción general de los KPIs
+    # Agregar una descripción general de los indicadores
     st.markdown("""
     <div style="
         background-color: #f0f8ff;
@@ -291,7 +291,7 @@ if st.session_state.navigation == "📍Zona de estudio":
         font-size: 14px;
         color: #333;
     ">
-        <strong>Análisis de KPIs:</strong> Estos indicadores muestran las dimensiones clave de la cuenca del Río Yaqui.
+        <strong>Análisis de Indicadores:</strong> Estos indicadores muestran las dimensiones clave de la cuenca del Río Yaqui.
         El área total de la cuenca y el área promedio de las subcuencas proporcionan una idea de la extensión del sistema hidrológico,
         mientras que la longitud del Río Yaqui indica el alcance del río principal en la región.
     </div>
