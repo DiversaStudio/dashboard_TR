@@ -306,7 +306,19 @@ elif st.session_state.navigation == "📊 Análisis Sociodemográfico":
     st.image("mapas/territorio_yaqui.png", use_column_width=True)
     
     # Texto explicativo del mapa
-    
+    st.markdown(
+    """
+    <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
+    Este mapa de Sonora abarca varios municipios clave: Bácum, Cajeme, Empalme, Guaymas y San Ignacio Río Muerto. Se encuentra delimitado por coordenadas geográficas específicas, con latitudes que oscilan entre 26.5 y 29.5 grados norte, y longitudes desde -111.5 hasta -109 grados oeste. Un elemento destacado es una línea azul que demarca el "Territorio Yaqui", una región histórica y culturalmente significativa que se extiende a través de varios de estos municipios, incluyendo la comunidad de Vícam.
+    Existen numerosos puntos amarillos que representan localidades, variando desde pequeños asentamientos de uno o dos hogares hasta poblaciones más grandes de hasta 200 hogares. Estos puntos ilustran la diversidad de asentamientos en la región.
+    Los municipios se distinguen por diferentes colores, siendo Guaymas el más extenso, ocupando gran parte del área central y costera del mapa. Es importante resaltar que el territorio yaqui de Vícam, una zona de gran relevancia cultural y étnica, se encuentra distribuido a lo largo de estos municipios, subrayando la importancia de la presencia yaqui en la región.
+    (Arreola Lizárraga, Garatuza Payán, Yépez González, & Robles Morúa, 2019).
+    <br><b>Referencia:</b><br>
+    Arreola Lizárraga, J. A., Garatuza Payán, J., Yépez González, E. A., & Robles Morúa, A. (2019). Capital Natural y Bienestar Social de la Comunidad Yaqui. Instituto Tecnológico de Sonora. ISBN: 978-607-609-204-0.
+    </div>
+    """, unsafe_allow_html=True
+    )
+
     st.markdown("<hr style='border:1px solid #688C98;'>", unsafe_allow_html=True)
 
     # Título de análisis sociodemográfico y texto introductorio
@@ -416,39 +428,53 @@ def gif_to_html(gif_path):
     data_url = base64.b64encode(contents).decode("utf-8")
     return f'<img src="data:image/gif;base64,{data_url}" alt="GIF animado" style="width: 100%;">'
 
+#Función para reporducir los gifs
+def gif_to_html(gif_path):
+    with open(gif_path, "rb") as file:
+        contents = file.read()
+    data_url = base64.b64encode(contents).decode("utf-8")
+    return f'<img src="data:image/gif;base64,{data_url}" alt="GIF animado" style="width: 100%;">'
+
 #SECCIÓN COBERTURA DEL SUELO
 if st.session_state.navigation == '🌿 Cobertura del Suelo':
     st.markdown("<h2 style='font-family: Arial, sans-serif; font-size: 24px; color: #1B2F54;'>Evolución de la Cobertura del Suelo en la Cuenca del Río Yaqui</h2>", unsafe_allow_html=True)
 
     # Intentar usar toggle_switch, si falla, usar st.checkbox con estilo personalizado
-    try:show_gif = toggle_switch(
-        label="Mostrar GIF animado",
-        #default_value=False,
-        #label_after=True,
-        #inactive_color="#BFC0A6",
-        #active_color="#83DADD",
-        #track_color="#3279C1",
-        #label_style={'color': 'blue', 'font-weight': 'bold'}  # Estilo para texto negro y negrita
-    )
+    try:
+        show_gif = toggle_switch(
+            label="Mostrar GIF animado",
+            #default_value=False,
+            #label_after=True,
+            #inactive_color="#BFC0A6",
+            #active_color="#83DADD",
+            #track_color="#3279C1",
+            #label_style={'color': 'blue', 'font-weight': 'bold'}  # Estilo para texto negro y negrita
+        )
     except:
         show_gif = st.checkbox("**Mostrar GIF animado**")
-
 
     # Primera imagen/GIF y texto
     if show_gif:
         gif_html = gif_to_html("geografico/dinamico.gif")
         st.markdown(gif_html, unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
+            La animación muestra cambios anuales en la cobertura del suelo, revelando fluctuaciones estacionales y transiciones entre las diferentes clases de uso del suelo. Por ejemplo, se pueden observar cambios significativos en la extensión de arbustos y cultivos, los cuales fluctúan en respuesta a las estaciones y las prácticas agrícolas. Las áreas cultivadas, en particular, muestran una expansión y contracción notable a lo largo del tiempo, reflejando los ciclos agrícolas y variaciones en el uso del suelo debido a factores climáticos y económicos. Por otro lado, las áreas de agua permanecen relativamente estables, aunque presentan pequeñas variaciones que pueden indicar cambios en los niveles de agua debido a la lluvia y el uso humano. Este análisis integrado de la dinámica espacio-temporal de la cobertura del suelo es crucial para la comunidad Yaqui y los gestores de recursos, ya que proporciona una comprensión detallada de cómo los diferentes tipos de uso del suelo han evolucionado y cuáles son las tendencias actuales. La capacidad de visualizar estos cambios permite tomar decisiones informadas para la gestión sostenible de los recursos naturales, la planificación del uso del suelo y la conservación del ecosistema en la cuenca del Río Yaqui.
+            </div>
+            """, unsafe_allow_html=True
+        )
     else:
         st.image("geografico/landcover_sub.png", use_column_width=True)
-
-    st.markdown(
-        """
-        <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
-        Este mapa físico muestra la cobertura del terreno en la región del Río Yaqui en Sonora, México, destacando las distintas clases de uso del suelo para el periodo 2023-2024. Se ilustran las principales características geográficas que influencian el flujo y la distribución del agua en la cuenca, como elevaciones, depresiones y tipos de vegetación. Las diferentes clases de uso del suelo, representadas por colores distintos, incluyen arbustos, cultivos, árboles, suelo expuesto, agua, construcciones y pasto. Este análisis proporciona una visión detallada de cómo el terreno y su uso impactan la gestión del agua en la cuenca.
-        La animación muestra la cobertura del terreno en la región del Río Yaqui desde 2015 hasta 2024. Esta visualización dinámica permite observar los cambios en el uso del suelo a lo largo del tiempo, destacando las variaciones en la distribución de agua, vegetación y áreas urbanas en la cuenca. Es una herramienta valiosa para entender cómo los diferentes factores geográficos y climáticos han influido en la evolución del paisaje en esta región.
-        </div>
-        """, unsafe_allow_html=True
-    )
+        st.markdown(
+            """
+            <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
+            Dynamic World es un conjunto de datos de Uso del Suelo y Cobertura del Suelo (LULC) en tiempo casi real, con una resolución de 10 metros, generado a partir de imágenes Sentinel-2. Este conjunto de datos proporciona información sobre la probabilidad de cobertura y etiquetas para nueve clases de uso del suelo: agua, árboles, pasto, vegetación inundada, cultivos, arbustos, áreas construidas, suelo expuesto y nieve/hielo. Dynamic World emplea una red neuronal convolucional (CNN), un tipo de modelo de IA especializado en el análisis de imágenes, para segmentar y clasificar cada píxel de la imagen en una de las nueve clases de uso del suelo mencionadas anteriormente. 
+            Las predicciones de Dynamic World están disponibles para la colección Sentinel-2 L1C desde el 27 de junio de 2015 hasta la fecha actual. La frecuencia de revisita de Sentinel-2 varía entre 2 y 5 días, dependiendo de la latitud. Las imágenes se filtran para incluir solo aquellas con menos del 35% de cobertura de nubes, utilizando una combinación de productos de probabilidad de nubes de Sentinel-2, el Índice de Desplazamiento de Nubes y la Transformada de Distancia Direccional para enmascarar nubes y sombras de nubes.
+            Las predicciones continuas y en tiempo casi real de Dynamic World facilitan la observación de procesos dinámicos y transitorios que son cruciales para la gestión ambiental y la planificación del uso del suelo. Por ejemplo, podemos observar que las áreas de arbustos y cultivos son predominantes en la zona de estudio, lo cual tiene implicaciones significativas para la gestión del agua y la conservación del ecosistema. Esta información es valiosa para la comunidad Yaqui, ya que les permite identificar áreas dominantes y focalizar esfuerzos de conservación o modificación del uso del suelo según las necesidades​.
+            </div>
+            """, unsafe_allow_html=True
+        )
 
     if show_gif:
         col1, col2 = st.columns([3, 2])
@@ -459,7 +485,7 @@ if st.session_state.navigation == '🌿 Cobertura del Suelo':
             st.markdown(
                 """
                 <div style="font-size: 14px; color: #333;">
-                Este gráfico muestra la evolución de la cobertura de diferentes clases de uso del suelo en la región del Río Yaqui desde 2015 hasta 2024. Permite observar tendencias y cambios en la distribución de tipos de terreno a lo largo del tiempo, proporcionando insights sobre los patrones de cambio en el uso del suelo y sus implicaciones para la gestión del agua en la cuenca.
+                El gráfico de series de tiempo muestra los cambios en la cobertura del suelo a lo largo de los años. Se observan fluctuaciones en arbustos y cultivos, con una reducción en arbustos y un aumento en cultivos, sugiriendo conversión de tierras. Las áreas de construcción y cuerpos de agua permanecen estables, mientras que el suelo expuesto muestra picos periódicos, asociados con deforestación o preparación de tierras agrícolas.
                 </div>
                 """, unsafe_allow_html=True
             )
@@ -472,14 +498,14 @@ if st.session_state.navigation == '🌿 Cobertura del Suelo':
             st.markdown(
                 """
                 <div style="font-size: 14px; color: #333;">
-                Este gráfico de barras ilustra la distribución promedio de las diferentes clases de cobertura del suelo en la región del Río Yaqui para el periodo 2023-2024. Proporciona una visión clara de la proporción de cada tipo de uso del suelo, permitiendo una comprensión rápida de la composición del paisaje en la cuenca y sus implicaciones para la gestión del agua.
+                El gráfico de barras muestra el porcentaje de cobertura del suelo en la cuenca del Río Yaqui, según Dynamic World. Los arbustos dominan con un 44.5%, seguidos por cultivos (22.1%) y árboles (19.0%). El suelo expuesto representa el 8.2%, y el agua cubre un 3.5%. Las áreas construidas (1.2%) y pastizales (0.7%) son mínimas, indicando una intervención humana limitada y baja actividad ganadera.
                 </div>
                 """, unsafe_allow_html=True
             )
 #SECCIÓN CLASIFICACIÓN HISTORICA
 elif st.session_state.navigation == '🏞️ Clasificación histórica':
     st.markdown("<h2 style='font-family: Arial, sans-serif; font-size: 24px; color: #1B2F54;'>Clasificación histórica de la Cobertura del Suelo</h2>", unsafe_allow_html=True)
-# Código existente para Cobertura del Suelo
+
     # Intentar usar toggle_switch, si falla, usar st.checkbox con estilo personalizado
     try:
         show_gif = toggle_switch(
@@ -497,16 +523,24 @@ elif st.session_state.navigation == '🏞️ Clasificación histórica':
     if show_gif:
         gif_html = gif_to_html("geografico/jrc_waterg.gif")
         st.markdown(gif_html, unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
+            La animación proporciona una visión completa de cómo la presencia de agua en la cuenca ha cambiado a lo largo del tiempo en la cuenca del Río Yaqui. En 1992, las áreas de agua estacional se concentran principalmente en las regiones bajas y costeras, mientras que el agua permanente se encuentra en cuerpos de agua más grandes y consistentes. Al comparar con los datos más recientes, se pueden identificar cambios en la extensión y ubicación de estos cuerpos de agua.
+            </div>
+            """, unsafe_allow_html=True
+        )
     else:
         st.image("geografico/jrc_water.png", use_column_width=True)
-
-    st.markdown(
-        """
-        <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
-        Este mapa muestra la clasificación histórica del agua en la región del Río Yaqui en Sonora, México, para el año 1992. Se destacan tres clases principales: sequía, agua estacional y agua permanente, representadas por colores distintos. El mapa proporciona una visión detallada de la distribución del agua en la cuenca durante este periodo, ayudando a entender las variaciones temporales y espaciales en los recursos hídricos de la región. Estas clasificaciones son esenciales para analizar los cambios a lo largo del tiempo y planificar la gestión sostenible del agua.
-        </div>
-        """, unsafe_allow_html=True
-    )
+        st.markdown(
+            """
+            <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
+            La capa de Agua de JRC (Centro Común de Investigación de la Comisión Europea) proporciona un mapeo de alta resolución de la superficie del agua global y sus cambios a largo plazo. Utiliza imágenes satelitales Landsat de los últimos 32 años para documentar la ubicación, la persistencia y la estacionalidad del agua superficial. Esta capa es capaz de registrar cuándo y dónde estuvo presente el agua, y cómo ha cambiado su presencia a lo largo del tiempo.
+            La metodología empleada para generar esta capa incluye el uso de más de tres millones de imágenes Landsat, que son procesadas para clasificar cada píxel como agua, tierra o no válido (por presencia de nubes, sombras, etc.). Un sistema experto no paramétrico, apoyado en el razonamiento evidencial y analítica visual, clasifica los píxeles de manera precisa, permitiendo capturar variaciones estacionales y cambios en la persistencia del agua. El resultado es un conjunto de datos detallado que muestra tanto el agua permanente como la estacional, proporcionando información crítica para la gestión de recursos hídricos y el monitoreo ambiental.
+            Este conjunto de datos es de gran importancia para el monitoreo de cambios en la superficie del agua a nivel global. Permite a los investigadores y gestores de recursos identificar tendencias en la presencia de agua, evaluar el impacto del cambio climático y las actividades humanas, y planificar de manera efectiva la conservación y el uso sostenible de los recursos hídricos. En la cuenca del Río Yaqui, esta información es vital para entender cómo varían los cuerpos de agua a lo largo del tiempo, lo que puede influir en las decisiones de gestión y conservación que tome la comunidad Yaqui.
+            </div>
+            """, unsafe_allow_html=True
+        )
 
     if show_gif:
         col1, col2 = st.columns([3, 2])
@@ -517,7 +551,7 @@ elif st.session_state.navigation == '🏞️ Clasificación histórica':
             st.markdown(
                 """
                 <div style="font-size: 14px; color: #333;">
-                La evolución del área de las diferentes clases de agua en la región del Río Yaqui desde 1992 hasta 2021. Las tres categorías representadas son agua estacional, agua permanente y sequía, con sus respectivas áreas medidas en kilómetros cuadrados. El análisis temporal permite observar cómo han cambiado las áreas de estas clases de agua a lo largo del tiempo, proporcionando una visión detallada de las tendencias y patrones en la disponibilidad de agua en la cuenca.
+                El gráfico de series de tiempo muestra la variación en el área de agua estacional y permanente desde 1992 hasta 2021. La línea azul claro representa el agua estacional, mientras que la línea azul oscuro muestra el agua permanente. Se observa que el agua estacional tiende a fluctuar significativamente más que el agua permanente, lo cual es esperado debido a las variaciones estacionales en el clima y el uso del suelo. Por ejemplo, se pueden ver picos y caídas en el área de agua estacional, reflejando periodos de lluvia y sequía, respectivamente. En cambio, el área de agua permanente es más estable pero también muestra una tendencia a disminuir en ciertos periodos, lo que podría indicar una reducción en cuerpos de agua que solían ser permanentes.
                 </div>
                 """, unsafe_allow_html=True
             )
@@ -530,11 +564,9 @@ elif st.session_state.navigation == '🏞️ Clasificación histórica':
             st.markdown(
                 """
                 <div style="font-size: 14px; color: #333;">
-                Este gráfico de barras ilustra la distribución del área de las diferentes clases de agua en la región del Río Yaqui. Se representan tres categorías: agua estacional, agua permanente y sequía, con áreas de 343.1 km², 208.1 km² y 154.3 km² respectivamente. Este análisis proporciona una visión clara de la extensión de cada tipo de cobertura de agua en la región, lo que es crucial para entender la disponibilidad y gestión de los recursos hídricos.
-                </div>
+                El gráfico de barras proporciona un resumen del área total cubierta por agua estacional y permanente en la cuenca. Se observa que el agua estacional cubre un área significativamente mayor (343.1 km²) comparada con el agua permanente (208.1 km²). Esta diferencia subraya la predominancia de cuerpos de agua temporales que aparecen y desaparecen con las estaciones, lo que tiene implicaciones importantes para la gestión del agua, especialmente en regiones propensas a sequías o con variaciones estacionales marcadas.
                 """, unsafe_allow_html=True
             )
-
 
 elif st.session_state.navigation == '💨 Evapotranspiración':
     st.markdown("<h2 style='font-family: Arial, sans-serif; font-size: 24px; color: #1B2F54;'>Análisis de Evapotranspiración</h2>", unsafe_allow_html=True)
@@ -556,17 +588,24 @@ elif st.session_state.navigation == '💨 Evapotranspiración':
     if show_gif:
         gif_html = gif_to_html("geografico/annual_g.gif")
         st.markdown(gif_html, unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
+            El análisis de la evapotranspiración anual en la cuenca del Río Yaqui muestra variaciones significativas entre diferentes áreas y años. En la animación, se observa que las zonas con mayor evapotranspiración coinciden con áreas densamente vegetadas y agrícolas. Estas áreas, al tener una mayor cantidad de vegetación, requieren más agua para mantener sus procesos biológicos, lo que resulta en una mayor evapotranspiración. Por ejemplo, regiones como Álvaro Obregón y Vícam, que tienen una intensa actividad agrícola, muestran niveles más altos de evapotranspiración debido al riego constante y a la transpiración de los cultivos. Las variaciones también reflejan la influencia de factores climáticos locales, como la cantidad de precipitación y la temperatura media anual. En años con mayor precipitación, la evapotranspiración puede aumentar debido a una mayor disponibilidad de agua en el suelo. Por el contrario, en años secos, la evapotranspiración puede disminuir debido a la escasez de agua. Además, la presencia de áreas urbanizadas y suelos desnudos, que tienen menor vegetación, se traduce en menores niveles de evapotranspiración comparados con las áreas agrícolas y boscosas.
+            </div>
+            """, unsafe_allow_html=True
+        )
     else:
         st.image("geografico/annual_Subcuencasg.png", use_column_width=True)
-   
-    # ... (resto del código sin cambios)
-    st.markdown(
-        """
-        <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
-        Este mapa muestra la evapotranspiración anual en la región del Río Yaqui en Sonora, México. La evapotranspiración es un proceso crucial en el ciclo hidrológico que combina la evaporación del agua desde la superficie terrestre y la transpiración de las plantas. El mapa utiliza una escala de colores para representar los diferentes niveles de evapotranspiración en la cuenca, proporcionando una visión detallada de cómo varía este fenómeno en diferentes áreas de la región. Esta información es esencial para entender el balance hídrico y planificar la gestión sostenible del agua en la cuenca del Río Yaqui.
-        </div>
-        """, unsafe_allow_html=True
-    )
+        st.markdown(
+            """
+            <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
+            Los datos sobre la evapotranspiración (ET), que es el proceso combinado de evaporación del agua del suelo y transpiración de las plantas,  son generados por la NASA utilizando imágenes satelitales del Espectrorradiómetro de Imágenes de Resolución Moderada (MODIS) Terra, y está disponible desde el año 2000 hasta el 2023. La evapotranspiración es una medida clave del ciclo del agua en la Tierra, ya que indica cuánta agua regresa a la atmósfera desde la superficie terrestre.
+            Para calcular la evapotranspiración, la capa MOD16A2GF utiliza el algoritmo Penman-Monteith, que combina datos meteorológicos diarios (como la temperatura media del aire, la radiación solar y la humedad específica) con información obtenida por teledetección, como la dinámica de la vegetación, el albedo (reflejo de la radiación solar) y la cobertura del suelo. Los datos meteorológicos provienen de la Oficina de Modelado y Asimilación Global de la NASA (GMAO) y se actualizan cada seis horas. Las imágenes MODIS, con una resolución de píxel de 500 metros, se compilan en periodos de 8 días, proporcionando una visión detallada de la evapotranspiración tanto diurna como nocturna. Este proceso asegura que las estimaciones sean precisas y útiles para el análisis de patrones temporales y espaciales de la evapotranspiración.
+            Este conjunto de datos es importante para el monitoreo ambiental y la gestión de recursos hídricos. Permite observar cómo varía la evapotranspiración en relación con el clima y el uso del suelo. Esta información es crucial para entender el balance hídrico de una región, evaluar la disponibilidad de agua para la agricultura y la vegetación natural, y planificar la gestión sostenible de los recursos hídricos.
+            </div>
+            """, unsafe_allow_html=True
+        )
     
     if show_gif:
         col1, col2 = st.columns([3, 2])
@@ -577,29 +616,42 @@ elif st.session_state.navigation == '💨 Evapotranspiración':
             st.markdown(
                 """
                 <div style="font-size: 14px; color: #333;">
-                Este gráfico muestra la evolución temporal de la evapotranspiración en la región del Río Yaqui. La serie de tiempo permite observar las tendencias y patrones en la evapotranspiración a lo largo de los años. Se pueden apreciar las variaciones estacionales y anuales, lo que es crucial para entender cómo los cambios climáticos y otros factores ambientales afectan la disponibilidad de agua en la cuenca. Esta información es valiosa para la planificación de recursos hídricos y la adaptación a largo plazo de las prácticas de gestión del agua en la región.
+                El gráfico de series temporales muestra una tendencia general de aumento en la evapotranspiración en los últimos años. Este incremento puede estar relacionado con varios factores, entre ellos, cambios en las condiciones climáticas, como aumentos en la temperatura global y variaciones en los patrones de precipitación. El calentamiento global puede aumentar la tasa de evapotranspiración al elevar la temperatura del aire, lo que incrementa la capacidad de la atmósfera para retener vapor de agua. Además, los cambios en los patrones de precipitación pueden afectar la disponibilidad de agua en el suelo, influyendo directamente en la cantidad de agua que puede evaporarse y ser transpirada por la vegetación.
+                El aumento de la evapotranspiración también puede ser una señal de cambios en el uso del suelo, como la expansión de áreas agrícolas que requieren riego intensivo.
                 </div>
                 """, unsafe_allow_html=True
-            )
-
-
+                )
+ 
+ 
+#SECCION ACUMULACIONES
 elif st.session_state.navigation == '💧 Acumulaciones':
     st.markdown("<h2 style='font-family: Arial, sans-serif; font-size: 24px; color: #1B2F54;'>Acumulaciones de Caudales</h2>", unsafe_allow_html=True)
-    
+   
     # Mostrar la imagen del mapa
     st.image("geografico/flow.png", use_column_width=True)
    
     st.markdown(
         """
         <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
-        Este mapa muestra las acumulaciones de caudales en la región del Río Yaqui en Sonora, México. Las acumulaciones de caudales son cruciales para entender cómo se distribuye y acumula el agua a lo largo de la cuenca hidrográfica. El mapa utiliza una escala de colores para representar los diferentes niveles de acumulación de agua, proporcionando una visión detallada de cómo varía este fenómeno en diferentes áreas de la región. Esta información es esencial para la gestión de recursos hídricos, la planificación de infraestructuras y la prevención de inundaciones en la cuenca del Río Yaqui.
+        HydroSHEDS (Hydrological data and maps based on SHuttle Elevation Derivatives at multiple Scales) es un producto de mapeo que proporciona información hidrográfica para aplicaciones a escala regional y global en un formato consistente. Desarrollado por el World Wildlife Fund (WWF) en colaboración con varias instituciones, HydroSHEDS se basa en datos de elevación obtenidos en 2000 por la misión Shuttle Radar Topography Mission (SRTM) de la NASA.
+        La capa de acumulación de flujo de HydroSHEDS es una herramienta clave para entender cómo el agua se mueve a través de una cuenca hidrográfica. Esta capa mide la cantidad de área aguas arriba que drena hacia cada celda, proporcionando información sobre el área de captación de cada punto del terreno.
+        Cada celda en el mapa representa una pequeña área del terreno. La dirección de drenaje se utiliza para determinar cómo el agua fluye desde una celda hacia otra. El valor de acumulación de flujo en una celda es una medida de cuántas celdas contribuyen con agua a esa celda específica. En las zonas altas, como las cimas de las colinas, los valores de acumulación son bajos, ya que solo unas pocas celdas drenan hacia esos puntos. En contraste, en las zonas bajas y valles, los valores son altos porque reciben agua de muchas celdas aguas arriba.
+        Los valores de acumulación de flujo varían significativamente, desde valores bajos en las alturas topográficas (fuentes de los ríos) hasta valores muy altos en las desembocaduras de grandes ríos, donde se acumulan millones de celdas. Esta información es crucial para la gestión de recursos hídricos, ya que permite identificar áreas con alta acumulación de agua, las cuales son vitales para la planificación de infraestructuras hidráulicas, el control de inundaciones y la conservación de los ecosistemas acuáticos.
         </div>
         """, unsafe_allow_html=True
     )
-# Mostrar la imagen correspondiente
-    st.image("geografico/flow2.png", caption="titulo", use_column_width=True)
 
+    # Mostrar la imagen correspondiente
+    st.image("geografico/flow2.png", caption="Acumulación media de flujo por subcuenca", use_column_width=True)
 
+    # Añadir la explicación del gráfico de barras
+    st.markdown(
+        """
+        <div style="font-size: 14px; color: #333; margin-top: 20px; margin-bottom: 20px;">
+        El gráfico de barras muestra la acumulación media de flujo (en número de celdas) en tres subcuencas: Álvaro Obregón, Vícam y A. Sahuaral. Álvaro Obregón presenta la mayor acumulación de flujo con 2272 celdas, lo que indica una gran área de captación aguas arriba que drena hacia esta subcuenca. Esto sugiere que Álvaro Obregón recibe una cantidad significativa de agua de áreas elevadas y es un punto crucial para la gestión del agua en la cuenca del Río Yaqui. Vícam sigue con una acumulación de 1269 celdas, lo que también indica una considerable área de captación. A. Sahuaral tiene la menor acumulación con 48 celdas, reflejando una menor contribución de agua de áreas aguas arriba.
+        </div>
+        """, unsafe_allow_html=True
+    )
 
 # SECCIÓN LEYES 
 elif st.session_state.navigation == "💦 Leyes del Agua en México":
